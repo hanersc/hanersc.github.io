@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Hanersc</title>
+    <style>
+        /* 复用主页面样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #111;
+            color: #ccc;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #4b0082;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            color: #fff;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #3c096c;
+            width: 100%;
+            margin-top: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        nav li {
+            padding: 10px 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #8a2be2;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center; /* 文字居中 */
+            flex-grow: 1;
+        }
+        .content p {
+            font-size: 18px;
+            color: #fff;
+        }
+        .back-btn {
+            background-color: #8a2be2;
+            color: #111;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 复用头部导航 -->
+    <header>
+        <div class="logo">
+            <img src="Hanersc.jpg" alt="Hanersc logo">
+            <h1>Hanersc</h1>
+        </div>
+        <div>
+            <button class="download-btn" style="margin-right:10px;">Donate</button>
+            <input type="text" placeholder="Search" style="padding: 5px; background-color: #222; border: 1px solid #444; color: #ccc;">
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="about.html">About</a></li> <!-- 当前页面链接 -->
+            <li><a href="index.html#downloads-link">Downloads</a></li> <!-- 回主页面下载区 -->
+        </ul>
+    </nav>
+
+    <!-- 子页面内容（居中显示“gh”） -->
+    <div class="content">
+        <h3>first Usage steps:</h3>
+        <p>When installing the program, set the installation directory to drive C After installing the program, please add it to 'Start' After the addition is complete, there are two ways to execute it. The first is to enter "hanersc filename. hanersc" in the command prompt, but the prerequisite is to add its directory. If not, please enter its specified directory before executing the file The second option is to run directly, setting the hanersc file opening method to double-click on the installed program at that time to open it directly</p>
+        <a href="index.html" class="back-btn"></a>
+    </div>
+</body>
+</html>
