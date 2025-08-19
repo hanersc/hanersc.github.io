@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanersc</title>
+    <style>
+        /* 基础样式保持不变 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #111;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #4b0082; 
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .logo h1 {
+            color: #fff;
+            font-size: 24px;
+        }
+        nav {
+            background-color: #3c096c;
+            width: 100%;
+            margin-top: 10px; 
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        nav li {
+            padding: 10px 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer; /* 增加鼠标指针样式 */
+        }
+        nav a:hover {
+            color: #8a2be2;
+        }
+        .hero {
+            background-color: #4b0082;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .download-btn {
+            background-color: #8a2be2;
+            color: #111;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            display: inline-block; /* 确保按钮样式一致 */
+        }
+        .download-btn:hover {
+            background-color: #a859e6;
+        }
+        .content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #444;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        a {
+            color: #8a2be2;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #a859e6;
+        }
+
+        /* 弹窗相关样式 */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明背景 */
+            z-index: 1000; /* 确保在最上层 */
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .modal-content h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        .version-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .close-btn {
+            background-color: #444;
+            color: #ccc;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .close-btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="logo">
+            < img src="Hanersc.jpg" alt="Hanersc logo"> 
+            <h1>Hanersc</h1>
+        </div>
+        <div>
+            <button class="download-btn" style="margin-right:10px;">Donate</button>
+            <input type="text" placeholder="Search" style="padding: 5px; background-color: #222; border: 1px solid #444; color: #ccc;">
+        </div>
+    </header>
+    <!-- 导航栏 -->
+    <nav>
+        <ul>
+            <li>About</li>
+            <li><a id="downloads-link">Downloads</a ></li> <!-- 移除href，添加ID用于绑定事件 -->
+        </ul>
+    </nav>
+    <!-- 主要下载区域 -->
+    <section class="hero">
+        <h2>Download the latest version for Windows</h2>
+        <a href="hanersc_1.0.1.exe" class="download-btn" download>Download Hanersc 1.0.1</a >
+        <p>Hanersc Compatible Systems for Windows, Linux/UNIX, macOS</p >
+        <p>Want to help test development versions of Hanersc 1.0.1? Published, Docker images</p >
+    </section>
+    <!-- 内容区域 -->
+    <section class="content">
+        <h3>Active Hanersc Releases</h3>
+        <p>For more information visit the Hanersc Developer's Guide.</p >
+        <table>
+            <thead>
+                <tr>
+                    <<th>Hanersc version</</th>
+                    <<th>Maintenance status</</th>
+                    <<th>First released</</th>
+                    <<th>End of support</</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.0.1</td>
+                    <td>Published</td>
+                    <td>2025-08-12</td>
+                </tr>
+                <tr>
+                    <td>1.0.0</td>
+                    <td>Published</td>
+                    <td>2025-04-24</td>
+                </tr>
+                <tr>
+                    <td>0.9.8</td>
+                    <td>Published</td>
+                    <td>2024-06-02</td>
+                </tr>
+                <tr>
+                    <td>0.8.1</td>
+                    <td>Published</td>
+                    <td>2023-10-09</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 下载弹窗 -->
+    <div id="downloads-modal" class="modal">
+        <div class="modal-content">
+            <h3>Select Version to Download</h3>
+            <div class="version-list">
+                <a href="hanersc_1.0.1.exe" class="download-btn" download>Download Hanersc 1.0.1</a >
+                <a href="hanersc_1.0.0.exe" class="download-btn" download>Download Hanersc 1.0.0</a >
+                <a href="hanersc_0.9.8.exe" class="download-btn" download>Download Hanersc 0.9.8</a >
+                <a href="hanersc_0.8.1.exe" class="download-btn" download>Download Hanersc 0.8.1</a >
+            </div>
+            <button class="close-btn" id="close-modal">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // 获取元素
+        const downloadsLink = document.getElementById('downloads-link');
+        const modal = document.getElementById('downloads-modal');
+        const closeBtn = document.getElementById('close-modal');
+
+        // 点击Downloads显示弹窗
+        downloadsLink.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        // 点击关闭按钮隐藏弹窗
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // 点击弹窗外部区域隐藏弹窗
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
