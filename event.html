@@ -1,112 +1,460 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Hanersc</title>
+    <title>Events - Hanersc</title>
     <style>
-        /* 复用主页面样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: #111;
-            color: #ccc;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1a0933 0%, #2d1b69 100%);
+            color: #e6e6e6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.6;
         }
+        
         header {
-            background-color: #4b0082;
-            padding: 10px 20px;
+            background-color: rgba(28, 15, 58, 0.8);
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #6b3fa0;
         }
+        
         .logo {
             display: flex;
             align-items: center;
         }
+        
         .logo img {
             height: 40px;
             margin-right: 10px;
+            border-radius: 5px;
         }
+        
         .logo h1 {
-            color: #fff;
-            font-size: 24px;
+            color: #b28ce4;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(178, 140, 228, 0.4);
         }
+        
         nav {
-            background-color: #3c096c;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
+            border-top: 1px solid #4a3570;
+            padding-top: 15px;
         }
+        
         nav ul {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
         }
+        
         nav li {
-            padding: 10px 20px;
+            margin-right: 25px;
         }
+        
         nav a {
-            color: #fff;
+            color: #c9b2e9;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+            padding: 8px 5px;
+            border-radius: 4px;
         }
+        
         nav a:hover {
-            color: #8a2be2;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(214, 188, 250, 0.7);
+            background: rgba(107, 63, 160, 0.2);
         }
-        .content {
-            max-width: 1200px;
+        
+        .container {
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
-            text-align: center; /* 文字居中 */
-            flex-grow: 1;
         }
-        .content p {
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            color: #b28ce4;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
             font-size: 18px;
-            color: #fff;
+            color: #d6d1e0;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .back-btn {
-            background-color: #8a2be2;
-            color: #111;
+        
+        .code-container {
+            background: #1c0f3a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin: 40px 0;
+            border: 1px solid #6b3fa0;
+        }
+        
+        .code-header {
+            background: linear-gradient(90deg, #4a2a82 0%, #6b3fa0 100%);
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 7px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .copy-btn i {
+            margin-right: 6px;
+        }
+        
+        .code-box {
+            position: relative;
+            overflow: auto;
+        }
+        
+        pre {
+            margin: 0;
+            padding: 25px 15px;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            overflow: auto;
+            background: #160b30;
+            min-height: 300px;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 25px 10px;
+            background: #1c0f3a;
+            text-align: right;
+            border-right: 1px solid #4a3570;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #7b699c;
+            user-select: none;
+        }
+        
+        .code-content {
+            margin-left: 50px;
+            display: block;
+        }
+        
+        .token.comment { color: #6a7b8f; font-style: italic; }
+        .token.keyword { color: #c74ded; font-weight: 500; }
+        .token.string { color: #47b8a3; }
+        .token.function { color: #e0c786; }
+        .token.number { color: #b5cea8; }
+        .token.operator { color: #d4d4d4; }
+        .token.bracket { color: #d4d4d4; }
+        
+        .events-section {
+            margin-top: 50px;
+        }
+        
+        .events-section h2 {
+            color: #b28ce4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .event-card {
+            background: rgba(42, 23, 82, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(107, 63, 160, 0.3);
+            margin-bottom: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(107, 63, 160, 0.6);
+        }
+        
+        .event-card h3 {
+            color: #b28ce4;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .event-date {
+            color: #9f8cc7;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .event-card p {
+            color: #d6d1e0;
+            margin-bottom: 20px;
+        }
+        
+        .event-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .event-btn {
             padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        
+        .btn-primary {
+            background: #6b3fa0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #8a2be2;
+        }
+        
+        .btn-secondary {
+            background: rgba(107, 63, 160, 0.2);
+            color: #c9b2e9;
+            border: 1px solid #6b3fa0;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(107, 63, 160, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #9f8cc7;
+            font-size: 15px;
+            border-top: 1px solid #4a3570;
+            background: rgba(28, 15, 58, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .event-actions {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 复用头部导航 -->
     <header>
         <div class="logo">
             <img src="Hanersc.jpg" alt="Hanersc logo">
             <h1>Hanersc</h1>
         </div>
         <div>
-            <button class="download-btn" style="margin-right:10px;">Donate</button>
-            <input type="text" placeholder="Search" style="padding: 5px; background-color: #222; border: 1px solid #444; color: #ccc;">
+            <button class="download-btn" style="margin-right:10px; background: #6b3fa0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Download</button>
+            <input type="text" placeholder="Search" style="padding: 8px; background-color: #2d1b4e; border: 1px solid #6b3fa0; color: #d6d1e0; border-radius: 4px;">
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="down.html#downloads-link">Downloads</a></li>
+                <li><a href="event.html">Events</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="about.html">About</a></li> <!-- 当前页面链接 -->
-            <li><a href="index.html#downloads-link">Downloads</a></li> <!-- 回主页面下载区 -->
-            <li><a href=" 
-            event.html">Event</a></li>
-        </ul>
-    </nav>
-    <div class="content">
-    <h2>No news at the moment.</h2>
-    <!-- 子页面内容（居中显示“gh”） -->
+    
+    <div class="container">
+        <div class="page-title">
+            <h1>Hanersc Events</h1>
+            <p>Stay updated with the latest events, workshops, and community gatherings related to the Hanersc programming language.</p>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span>event_example.hanersc</span>
+                <button class="copy-btn" id="copy-btn"><i>📋</i> Copy Code</button>
+            </div>
+            
+            <div class="code-box">
+                <div class="line-numbers">
+1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22
+                </div>
+                
+                <pre><code class="code-content"><span class="token comment">// Hanersc Event Management Example</span>
+<span class="token keyword">encod</span> english
+<span class="token keyword">str:</span> eventName = <span class="token string">"Hanersc Developer Conference"</span>
+<span class="token keyword">int:</span> maxAttendees = <span class="token number">200</span>
+<span class="token keyword">int:</span> registeredAttendees = <span class="token number">0</span>
+<span class="token keyword">bool:</span> registrationOpen = <span class="token keyword">true</span>
+
+<span class="token keyword">system.out:</span> <span class="token string">"Welcome to "</span> + eventName
+
+<span class="token keyword">cicle</span><span class="token bracket">(</span>registrationOpen<span class="token bracket">)</span> <span class="token bracket">{</span>
+    <span class="token keyword">system.out:</span> <span class="token string">"Available spots: "</span>
+    <span class="token keyword">system.out:</span> maxAttendees - registeredAttendees
+    
+    <span class="token keyword">if</span><span class="token bracket">(</span>registeredAttendees >= maxAttendees<span class="token bracket">)</span> <span class="token bracket">{</span>
+        registrationOpen = <span class="token keyword">false</span>
+        <span class="token keyword">system.out:</span> <span class="token string">"Registration is now closed!"</span>
+    <span class="token bracket">}</span>
+    
+    registeredAttendees = registeredAttendees + <span class="token number">1</span>
+<span class="token bracket">}</span>
+
+<span class="token keyword">system.out:</span> <span class="token string">"Event registration completed successfully!"</span></code></pre>
+            </div>
+        </div>
+        
+        <div class="events-section">
+            <h2>Upcoming Events</h2>
+            
+            <div class="event-card">
+                <h3>Hanersc Virtual Conference 2023</h3>
+                <div class="event-date">November 15-16, 2023 | Online</div>
+                <p>Join us for the first annual Hanersc Virtual Conference! This two-day event will feature talks from core developers, hands-on workshops, and opportunities to connect with the growing Hanersc community.</p>
+                <div class="event-actions">
+                    <a href="#" class="event-btn btn-primary">Register Now</a>
+                    <a href="#" class="event-btn btn-secondary">View Agenda</a>
+                </div>
+            </div>
+            
+            <div class="event-card">
+                <h3>Hanersc Workshop: Getting Started</h3>
+                <div class="event-date">December 5, 2023 | 2:00 PM UTC</div>
+                <p>Learn the basics of Hanersc in this interactive workshop. We'll cover syntax, data types, control structures, and build a simple project together. Perfect for developers new to Hanersc.</p>
+                <div class="event-actions">
+                    <a href="#" class="event-btn btn-primary">Register Now</a>
+                    <a href="#" class="event-btn btn-secondary">Download Materials</a>
+                </div>
+            </div>
+            
+            <div class="event-card">
+                <h3>Community Hackathon</h3>
+                <div class="event-date">January 12-14, 2024 | Online</div>
+                <p>Participate in our first community hackathon! Build projects with Hanersc, collaborate with other developers, and win prizes. All skill levels are welcome.</p>
+                <div class="event-actions">
+                    <a href="#" class="event-btn btn-primary">Register Now</a>
+                    <a href="#" class="event-btn btn-secondary">View Challenges</a>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <footer>
+        <p>© 2023 Hanersc Language | Join our community events</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-btn');
+            
+            copyButton.addEventListener('click', function() {
+                const codeContent = document.querySelector('.code-content');
+                const textToCopy = codeContent.textContent;
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = copyButton.innerHTML;
+                    copyButton.innerHTML = '<i>✓</i> Copied!';
+                    
+                    setTimeout(() => {
+                        copyButton.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Copy failed. Please manually select and copy the text.');
+                });
+            });
+            
+            // Simple syntax highlighting
+            function applySyntaxHighlighting() {
+                const codeElement = document.querySelector('.code-content');
+                let codeHtml = codeElement.innerHTML;
+                
+                // Highlight comments
+                codeHtml = codeHtml.replace(/\/\/.*/g, '<span class="token comment">$&</span>');
+                
+                // Highlight strings
+                codeHtml = codeHtml.replace(/".*?"/g, '<span class="token string">$&</span>');
+                
+                // Highlight keywords
+                const keywords = ['encod', 'int:', 'float:', 'str:', 'bool:', 'system.out:', 'cicle', 'if', 'else', 'import', 'true', 'false'];
+                keywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                    codeHtml = codeHtml.replace(regex, `<span class="token keyword">${keyword}</span>`);
+                });
+                
+                // Highlight numbers
+                codeHtml = codeHtml.replace(/\b\d+(\.\d+)?\b/g, '<span class="token number">$&</span>');
+                
+                // Highlight brackets
+                codeHtml = codeHtml.replace(/(\{|\}|\(|\))/g, '<span class="token bracket">$1</span>');
+                
+                // Highlight operators
+                codeHtml = codeHtml.replace(/\+/g, '<span class="token operator">+</span>');
+                
+                codeElement.innerHTML = codeHtml;
+            }
+            
+            applySyntaxHighlighting();
+        });
+    </script>
 </body>
 </html>

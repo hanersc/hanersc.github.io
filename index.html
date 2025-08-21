@@ -1,266 +1,385 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanersc</title>
+    <title>Hanersc Code Example</title>
     <style>
-        /* 基础样式保持不变 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: #111;
-            color: #ccc;
+            background: linear-gradient(135deg, #1a0933 0%, #2d1b69 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
             line-height: 1.6;
         }
+        
         header {
-            background-color: #4b0082; 
-            padding: 10px 20px;
+            background-color: rgba(28, 15, 58, 0.8);
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #6b3fa0;
         }
+        
         .logo {
             display: flex;
             align-items: center;
         }
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
+        
         .logo h1 {
-            color: #fff;
-            font-size: 24px;
+            color: #b28ce4;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(178, 140, 228, 0.4);
         }
+        
         nav {
-            background-color: #3c096c;
             width: 100%;
-            margin-top: 10px; 
+            margin-top: 15px;
+            border-top: 1px solid #4a3570;
+            padding-top: 15px;
         }
+        
         nav ul {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
         }
+        
         nav li {
-            padding: 10px 20px;
+            margin-right: 25px;
         }
+        
         nav a {
-            color: #fff;
+            color: #c9b2e9;
             text-decoration: none;
-            transition: color 0.3s;
-            cursor: pointer; /* 增加鼠标指针样式 */
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+            padding: 8px 5px;
+            border-radius: 4px;
         }
+        
         nav a:hover {
-            color: #8a2be2;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(214, 188, 250, 0.7);
+            background: rgba(107, 63, 160, 0.2);
         }
-        .hero {
-            background-color: #4b0082;
-            color: #fff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .hero h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .download-btn {
-            background-color: #8a2be2;
-            color: #111;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            display: inline-block; /* 确保按钮样式一致 */
-        }
-        .download-btn:hover {
-            background-color: #a859e6;
-        }
-        .content {
-            max-width: 1200px;
-            margin: 20px auto;
+        
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
             padding: 0 20px;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #444;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        a {
-            color: #8a2be2;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        a:hover {
-            color: #a859e6;
-        }
-
-        /* 弹窗相关样式 */
-        .modal {
-            display: none; /* 默认隐藏 */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* 半透明背景 */
-            z-index: 1000; /* 确保在最上层 */
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background-color: #222;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
+        
+        .intro {
             text-align: center;
+            margin-bottom: 40px;
         }
-        .modal-content h3 {
-            color: #fff;
+        
+        .intro h2 {
+            color: #b28ce4;
+            font-size: 32px;
             margin-bottom: 20px;
-            font-size: 22px;
         }
-        .version-list {
+        
+        .intro p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #d6d1e0;
+        }
+        
+        .code-container {
+            background: #1c0f3a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin: 40px 0;
+            border: 1px solid #6b3fa0;
+        }
+        
+        .code-header {
+            background: linear-gradient(90deg, #4a2a82 0%, #6b3fa0 100%);
+            color: #ffffff;
+            padding: 15px 20px;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
         }
-        .close-btn {
-            background-color: #444;
-            color: #ccc;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 7px 15px;
+            border-radius: 4px;
             cursor: pointer;
-            margin-top: 10px;
+            transition: background 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
         }
-        .close-btn:hover {
-            background-color: #666;
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .copy-btn i {
+            margin-right: 6px;
+        }
+        
+        .code-box {
+            position: relative;
+            overflow: auto;
+        }
+        
+        pre {
+            margin: 0;
+            padding: 25px 15px;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            overflow: auto;
+            background: #160b30;
+            min-height: 300px;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 25px 10px;
+            background: #1c0f3a;
+            text-align: right;
+            border-right: 1px solid #4a3570;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #7b699c;
+            user-select: none;
+        }
+        
+        .code-content {
+            margin-left: 50px;
+            display: block;
+        }
+        
+        .token.comment { color: #6a7b8f; font-style: italic; }
+        .token.keyword { color: #c74ded; font-weight: 500; }
+        .token.string { color: #47b8a3; }
+        .token.function { color: #e0c786; }
+        .token.number { color: #b5cea8; }
+        .token.operator { color: #d4d4d4; }
+        .token.bracket { color: #d4d4d4; }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .feature {
+            background: rgba(42, 23, 82, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(107, 63, 160, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(107, 63, 160, 0.6);
+        }
+        
+        .feature h3 {
+            color: #b28ce4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .feature p {
+            color: #d6d1e0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #9f8cc7;
+            font-size: 15px;
+            border-top: 1px solid #4a3570;
+            background: rgba(28, 15, 58, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 头部 -->
     <header>
         <div class="logo">
-            <img src="Hanersc.jpg" alt="Hanersc logo">
             <h1>Hanersc</h1>
+            <img src="Hanersc.jpg" alt="Hanersc logo">
         </div>
         <div>
-            <button class="download-btn" style="margin-right:10px;">Donate</button>
-            <input type="text" placeholder="Search" style="padding: 5px; background-color: #222; border: 1px solid #444; color: #ccc;">
+            <button class="download-btn" style="margin-right:10px; background: #6b3fa0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Download</button>
+            <input type="text" placeholder="Search" style="padding: 8px; background-color: #2d1b4e; border: 1px solid #6b3fa0; color: #d6d1e0; border-radius: 4px;">
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="down.html#downloads-link">Downloads</a></li>
+                <li><a href="event.html">Events</a></li>
+            </ul>
+        </nav>
     </header>
-    <!-- 导航栏 -->
-</nav>
-
-    <nav>
-        <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a id="downloads-link">Downloads</a ></li> <!-- 移除href，添加ID用于绑定事件 -->
-            <li><a href="event.html">Event</a></li>
-        </ul>
-    </nav>
-    <!-- 主要下载区域 -->
-    <section class="hero">
-        <h2>Download the latest version for Windows</h2>
-        <a href="hanersc.exe" class="download-btn" download>Download Hanersc 1.0.1</a >
-        <p>Hanersc Compatible Systems for Windows, Linux/UNIX, macOS</p >
-        <p>Want to help test development versions of Hanersc 1.0.1? Published, Docker images</p >
-    </section>
-    <!-- 内容区域 -->
-    <section class="content">
-        <h3>Active Hanersc Releases</h3>
-        <p>For more information visit the Hanersc Developer's Guide.</p >
-        <table>
-            <thead>
-                <tr>
-                    <th>Hanersc version</</th>
-                    <th>Maintenance status</</th>
-                    <th>First released</</th>
-                    <th>Last Update</</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1.0.1</td>
-                    <td>Published</td>
-                    <td>2025-08-12</td>
-                    <td>2025-08-19</td>
-               </tr>
-              <tr>
-                  <td>1.0.0</td>
-                    <td>Published</td>
-                    <td>2025-04-24</td>
-                    <td>2025-07-27</td>
-                </tr>
-                <tr>
-                    <td>0.9.8</td>
-                    <td>Published</td>
-                    <td>2024-06-02</td>
-                    <td>2025-01-25</td>
-                </tr>
-                <tr>
-                    <td>0.8.1</td>
-                    <td>Published</td>
-                    <td>2023-10-09</td>
-                    <td>2024-05-17</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <!-- 下载弹窗 -->
-    <div id="downloads-modal" class="modal">
-        <div class="modal-content">
-            <h3>Select Version to Download</h3>
-            <div class="version-list">
-                <a href="hanersc.exe" class="download-btn" download>Download Hanersc 1.0.1</a >
-                <a href="hanersc.exe" class="download-btn" download>Download Hanersc 1.0.0</a >
-                <a href="hanersc.exe" class="download-btn" download>Download Hanersc 0.9.8</a >
-                <a href="hanersc.exe" class="download-btn" download>Download Hanersc 0.8.1</a >
+    
+    <div class="container">
+        <div class="intro">
+            <h2>Hanersc Programming Language</h2>
+            <p>Hanersc is an emerging systems programming language that prioritizes both code elegance and raw power. Its compiler delivers an extensive suite of features—from advanced compile-time checks to seamless cross-compilation—all accessible through a remarkably intuitive syntax.</p>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span>example.hanersc</span>
+                <button class="copy-btn" id="copy-btn"><i>📋</i> Copy Code</button>
             </div>
-            <button class="close-btn" id="close-modal">Close</button>
+            
+            <div class="code-box">
+                <div class="line-numbers">
+1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22
+                </div>
+                
+                <pre><code class="code-content"><span class="token comment">// Hanersc Example Code</span>
+<span class="token keyword">encod</span> english
+<span class="token keyword">int:</span> count = <span class="token number">5</span>
+<span class="token keyword">float:</span> pi = <span class="token number">3.14159</span>
+<span class="token keyword">str:</span> message = <span class="token string">"Hello, Hanersc!"</span>
+
+<span class="token keyword">system.out:</span> message
+<span class="token keyword">system.out:</span> <span class="token string">"The value of pi is "</span>
+<span class="token keyword">system.out:</span> pi
+
+<span class="token keyword">cicle</span><span class="token bracket">(</span>count > <span class="token number">0</span><span class="token bracket">)</span> <span class="token bracket">{</span>
+    <span class="token keyword">system.out:</span> <span class="token string">"Countdown: "</span>
+    <span class="token keyword">system.out:</span> count
+    count = count - <span class="token number">1</span>
+<span class="token bracket">}</span>
+
+<span class="token keyword">system.out:</span> <span class="token string">"Launch!"</span></code></pre>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Clean Syntax</h3>
+                <p>Hanersc features a minimalist and intuitive syntax that reduces boilerplate code and improves readability, making it easier to write and maintain programs.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Powerful Compiler</h3>
+                <p>The Hanersc compiler performs advanced optimizations and provides detailed error messages, helping developers write efficient and correct code.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Cross-Platform</h3>
+                <p>Write once, run anywhere. Hanersc supports seamless cross-compilation for various platforms and architectures from a single codebase.</p>
+            </div>
         </div>
     </div>
+    
+    <footer>
+        <p>© 2023 Hanersc Language | Designed for Developers</p>
+    </footer>
 
     <script>
-        // 获取元素
-        const downloadsLink = document.getElementById('downloads-link');
-        const modal = document.getElementById('downloads-modal');
-        const closeBtn = document.getElementById('close-modal');
-
-        // 点击Downloads显示弹窗
-        downloadsLink.addEventListener('click', () => {
-            modal.style.display = 'flex';
-        });
-
-        // 点击关闭按钮隐藏弹窗
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-
-        // 点击弹窗外部区域隐藏弹窗
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-btn');
+            
+            copyButton.addEventListener('click', function() {
+                const codeContent = document.querySelector('.code-content');
+                const textToCopy = codeContent.textContent;
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = copyButton.innerHTML;
+                    copyButton.innerHTML = '<i>✓</i> Copied!';
+                    
+                    setTimeout(() => {
+                        copyButton.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Copy failed. Please manually select and copy the text.');
+                });
+            });
+            
+            // Simple syntax highlighting
+            function applySyntaxHighlighting() {
+                const codeElement = document.querySelector('.code-content');
+                let codeHtml = codeElement.innerHTML;
+                
+                // Highlight comments
+                codeHtml = codeHtml.replace(/\/\/.*/g, '<span class="token comment">$&</span>');
+                
+                // Highlight strings
+                codeHtml = codeHtml.replace(/".*?"/g, '<span class="token string">$&</span>');
+                
+                // Highlight keywords
+                const keywords = ['encod', 'int:', 'float:', 'str:', 'bool:', 'system.out:', 'cicle', 'if', 'else', 'import'];
+                keywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                    codeHtml = codeHtml.replace(regex, `<span class="token keyword">${keyword}</span>`);
+                });
+                
+                // Highlight numbers
+                codeHtml = codeHtml.replace(/\b\d+(\.\d+)?\b/g, '<span class="token number">$&</span>');
+                
+                // Highlight brackets
+                codeHtml = codeHtml.replace(/(\{|\}|\(|\))/g, '<span class="token bracket">$1</span>');
+                
+                codeElement.innerHTML = codeHtml;
             }
+            
+            applySyntaxHighlighting();
         });
     </script>
 </body>
-</html>
+</html>=

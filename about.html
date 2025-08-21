@@ -1,113 +1,552 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Hanersc</title>
     <style>
-        /* 复用主页面样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
         body {
-            background-color: #111;
-            color: #ccc;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1a0933 0%, #2d1b69 100%);
+            color: #e6e6e6;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.6;
         }
+        
         header {
-            background-color: #4b0082;
-            padding: 10px 20px;
+            background-color: rgba(28, 15, 58, 0.8);
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid #6b3fa0;
         }
+        
         .logo {
             display: flex;
             align-items: center;
         }
+        
         .logo img {
             height: 40px;
             margin-right: 10px;
+            border-radius: 5px;
         }
+        
         .logo h1 {
-            color: #fff;
-            font-size: 24px;
+            color: #b28ce4;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(178, 140, 228, 0.4);
         }
+        
         nav {
-            background-color: #3c096c;
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
+            border-top: 1px solid #4a3570;
+            padding-top: 15px;
         }
+        
         nav ul {
             list-style: none;
             display: flex;
             flex-wrap: wrap;
         }
+        
         nav li {
-            padding: 10px 20px;
+            margin-right: 25px;
         }
+        
         nav a {
-            color: #fff;
+            color: #c9b2e9;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+            padding: 8px 5px;
+            border-radius: 4px;
         }
+        
         nav a:hover {
-            color: #8a2be2;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(214, 188, 250, 0.7);
+            background: rgba(107, 63, 160, 0.2);
         }
-        .content {
-            max-width: 1200px;
+        
+        .container {
+            max-width: 1000px;
             margin: 40px auto;
             padding: 0 20px;
-            text-align: center; /* 文字居中 */
-            flex-grow: 1;
         }
-        .content p {
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            color: #b28ce4;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .page-title p {
             font-size: 18px;
-            color: #fff;
+            color: #d6d1e0;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .back-btn {
-            background-color: #8a2be2;
-            color: #111;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
+        
+        .content-section {
+            margin-bottom: 50px;
+        }
+        
+        .content-section h2 {
+            color: #b28ce4;
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #6b3fa0;
+            padding-bottom: 10px;
+        }
+        
+        .content-section p {
+            color: #d6d1e0;
+            font-size: 17px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(107, 63, 160, 0.3);
+            color: #d6d1e0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: #6b3fa0;
             font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        
+        .code-container {
+            background: #1c0f3a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            margin: 40px 0;
+            border: 1px solid #6b3fa0;
+        }
+        
+        .code-header {
+            background: linear-gradient(90deg, #4a2a82 0%, #6b3fa0 100%);
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 7px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        .copy-btn i {
+            margin-right: 6px;
+        }
+        
+        .code-box {
+            position: relative;
+            overflow: auto;
+        }
+        
+        pre {
+            margin: 0;
+            padding: 25px 15px;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            overflow: auto;
+            background: #160b30;
+            min-height: 300px;
+        }
+        
+        code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .line-numbers {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding: 25px 10px;
+            background: #1c0f3a;
+            text-align: right;
+            border-right: 1px solid #4a3570;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #7b699c;
+            user-select: none;
+        }
+        
+        .code-content {
+            margin-left: 50px;
+            display: block;
+        }
+        
+        .token.comment { color: #6a7b8f; font-style: italic; }
+        .token.keyword { color: #c74ded; font-weight: 500; }
+        .token.string { color: #47b8a3; }
+        .token.function { color: #e0c786; }
+        .token.number { color: #b5cea8; }
+        .token.operator { color: #d4d4d4; }
+        .token.bracket { color: #d4d4d4; }
+        
+        .usage-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .step-card {
+            background: rgba(42, 23, 82, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(107, 63, 160, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(107, 63, 160, 0.6);
+        }
+        
+        .step-number {
+            background: #6b3fa0;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .step-card h3 {
+            color: #b28ce4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .step-card p {
+            color: #d6d1e0;
+        }
+        
+        .language-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: rgba(42, 23, 82, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(107, 63, 160, 0.3);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border-color: rgba(107, 63, 160, 0.6);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #b28ce4;
+        }
+        
+        .feature-card h3 {
+            color: #b28ce4;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        
+        .feature-card p {
+            color: #d6d1e0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #9f8cc7;
+            font-size: 15px;
+            border-top: 1px solid #4a3570;
+            background: rgba(28, 15, 58, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .usage-steps, .language-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 复用头部导航 -->
     <header>
         <div class="logo">
             <img src="Hanersc.jpg" alt="Hanersc logo">
             <h1>Hanersc</h1>
         </div>
         <div>
-            <button class="download-btn" style="margin-right:10px;">Donate</button>
-            <input type="text" placeholder="Search" style="padding: 5px; background-color: #222; border: 1px solid #444; color: #ccc;">
+            <button class="download-btn" style="margin-right:10px; background: #6b3fa0; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Download</button>
+            <input type="text" placeholder="Search" style="padding: 8px; background-color: #2d1b4e; border: 1px solid #6b3fa0; color: #d6d1e0; border-radius: 4px;">
         </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="down.html#downloads-link">Downloads</a></li>
+                <li><a href="event.html">Events</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <ul>
-            <li><a href="about.html">About</a></li> <!-- 当前页面链接 -->
-            <li><a href="index.html#downloads-link">Downloads</a></li> <!-- 回主页面下载区 -->
-            <li><a href="event.html">Event</a></li>
-        </ul>
-    </nav>
+    
+    <div class="container">
+        <div class="page-title">
+            <h1>About Hanersc</h1>
+            <p>Learn about the Hanersc programming language, its features, and how to get started with this modern, efficient language.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>What is Hanersc?</h2>
+            <p>Hanersc is a statically-typed, compiled scripting language designed for clarity and performance. It features a unique, minimalist syntax that eliminates common boilerplate, offering a fresh and intuitive alternative for developers seeking efficiency and expressiveness.</p>
+            
+            <p>Developed with a focus on both code elegance and raw power, Hanersc combines the best aspects of modern programming languages while introducing innovative features that streamline development workflows.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>How to Use Hanersc</h2>
+            
+            <div class="usage-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Installation</h3>
+                    <p>Download and install Hanersc from our downloads page. Set the installation directory to drive C for optimal performance.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Add to Startup</h3>
+                    <p>After installation, add Hanersc to your system's startup programs to ensure it's always available in your command path.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Execution Methods</h3>
+                    <p>Run Hanersc programs via command prompt with "hanersc filename.hanersc" or set file association to open .hanersc files directly with the Hanersc interpreter.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">
+                <span>hello_world.hanersc</span>
+                <button class="copy-btn" id="copy-btn"><i>📋</i> Copy Code</button>
+            </div>
+            
+            <div class="code-box">
+                <div class="line-numbers">
+1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22
+                </div>
+                
+                <pre><code class="code-content"><span class="token comment">// A simple Hanersc program</span>
+<span class="token keyword">encod</span> english
+<span class="token keyword">str:</span> message = <span class="token string">"Hello, World!"</span>
+<span class="token keyword">int:</span> iterations = <span class="token number">3</span>
+<span class="token keyword">float:</span> result = <span class="token function">sqrt</span><span class="token bracket">(</span><span class="token number">2.0</span><span class="token bracket">)</span>
 
-    <!-- 子页面内容（居中显示“gh”） -->
-    <div class="content">
-        <h2>How to use?</h2>
-        <p>When installing the program, set the installation directory to drive C After installing the program, please add it to 'Start' After the addition is complete, there are two ways to execute it. The first is to enter "hanersc filename. hanersc" in the command prompt, but the prerequisite is to add its directory. If not, please enter its specified directory before executing the file The second option is to run directly, setting the hanersc file opening method to double-click on the installed program at that time to open it directly</p>
+<span class="token keyword">system.out:</span> message
+<span class="token keyword">system.out:</span> <span class="token string">"The square root of 2 is "</span>
+<span class="token keyword">system.out:</span> result
+
+<span class="token keyword">cicle</span><span class="token bracket">(</span>iterations > <span class="token number">0</span><span class="token bracket">)</span> <span class="token bracket">{</span>
+    <span class="token keyword">system.out:</span> <span class="token string">"Factorial of "</span>
+    <span class="token keyword">system.out:</span> iterations
+    <span class="token keyword">system.out:</span> <span class="token string">" is "</span>
+    <span class="token keyword">system.out:</span> <span class="token function">k</span><span class="token bracket">(</span>iterations<span class="token bracket">)</span>
+    iterations = iterations - <span class="token number">1</span>
+<span class="token bracket">}</span>
+
+<span class="token keyword">system.out:</span> <span class="token string">"Program execution complete!"</span></code></pre>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Key Features</h2>
+            
+            <div class="language-features">
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Clean Syntax</h3>
+                    <p>Hanersc breaks from tradition with its own elegant grammar, using intuitive keywords that make code highly readable.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Strict Type System</h3>
+                    <p>Variables are declared with intent (int:, float:, str:, bool:). The language enforces strong typing, preventing common errors.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Rich Standard Library</h3>
+                    <p>Comes equipped with a powerful set of native functions for math, string manipulation, and multilingual encoding support.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Execution</h3>
+                    <p>Hanersc source is compiled into optimized bytecode for fast execution, providing the performance of a compiled language.</p>
+                </div>
+            </div>
+            
+            <ul class="feature-list">
+                <li>Minimalist syntax that reduces boilerplate code</li>
+                <li>Prevents mixed-type arithmetic errors (e.g., int + float)</li>
+                <li>Built-in functions for mathematics (sqrt, pow, k for factorial)</li>
+                <li>Advanced string manipulation capabilities (reverse, insert, delete)</li>
+                <li>Comprehensive multilingual encoding support</li>
+                <li>Cross-platform compatibility (Windows, Linux, macOS)</li>
+                <li>Modern codebase free from legacy constraints</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Why Choose Hanersc?</h2>
+            <p>Hanersc represents a deliberate step forward in language design, prioritizing developer intuition and robust performance. It invites programmers to experience a streamlined and powerful approach to coding.</p>
+            
+            <p>As a new and emerging language, Hanersc is free from legacy constraints, offering a modern codebase and a unique opportunity for early adopters to explore and influence its ecosystem. Whether you're building system utilities, data processing scripts, or learning programming concepts, Hanersc provides an elegant and efficient environment for your projects.</p>
+            
+            <p>Join the growing community of Hanersc developers and experience the future of programming languages today!</p>
+        </div>
     </div>
+    
+    <footer>
+        <p>© 2023 Hanersc Language | Learn, Code, Innovate</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-btn');
+            
+            copyButton.addEventListener('click', function() {
+                const codeContent = document.querySelector('.code-content');
+                const textToCopy = codeContent.textContent;
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = copyButton.innerHTML;
+                    copyButton.innerHTML = '<i>✓</i> Copied!';
+                    
+                    setTimeout(() => {
+                        copyButton.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                    alert('Copy failed. Please manually select and copy the text.');
+                });
+            });
+            
+            // Simple syntax highlighting
+            function applySyntaxHighlighting() {
+                const codeElement = document.querySelector('.code-content');
+                let codeHtml = codeElement.innerHTML;
+                
+                // Highlight comments
+                codeHtml = codeHtml.replace(/\/\/.*/g, '<span class="token comment">$&</span>');
+                
+                // Highlight strings
+                codeHtml = codeHtml.replace(/".*?"/g, '<span class="token string">$&</span>');
+                
+                // Highlight keywords
+                const keywords = ['encod', 'int:', 'float:', 'str:', 'bool:', 'system.out:', 'cicle', 'if', 'else', 'import'];
+                keywords.forEach(keyword => {
+                    const regex = new RegExp(`\\b${keyword}\\b`, 'g');
+                    codeHtml = codeHtml.replace(regex, `<span class="token keyword">${keyword}</span>`);
+                });
+                
+                // Highlight functions
+                codeHtml = codeHtml.replace(/\b(sqrt|k)\b/g, '<span class="token function">$1</span>');
+                
+                // Highlight numbers
+                codeHtml = codeHtml.replace(/\b\d+(\.\d+)?\b/g, '<span class="token number">$&</span>');
+                
+                // Highlight brackets
+                codeHtml = codeHtml.replace(/(\{|\}|\(|\))/g, '<span class="token bracket">$1</span>');
+                
+                codeElement.innerHTML = codeHtml;
+            }
+            
+            applySyntaxHighlighting();
+        });
+    </script>
 </body>
 </html>
